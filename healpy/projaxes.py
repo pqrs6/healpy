@@ -884,8 +884,9 @@ def get_color_table(vmin, vmax, val, cmap=None, norm=None):
 
 def create_colormap(cmap):
     if cmap is not None:
-        return cmap
-    cmap0 = matplotlib.cm.get_cmap(matplotlib.rcParams["image.cmap"])
+        cmap0 = cmap
+    else:
+        cmap0 = matplotlib.cm.get_cmap(matplotlib.rcParams["image.cmap"])
     if hasattr(cmap0, "_segmentdata"):
         newcm = matplotlib.colors.LinearSegmentedColormap(
             "newcm", cmap0._segmentdata, cmap0.N
