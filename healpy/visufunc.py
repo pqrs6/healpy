@@ -249,6 +249,7 @@ def mollview(
             badcolor=badcolor,
             bgcolor=bgcolor,
             norm=norm,
+            polarization=polarization,
         )
         if cbar:
             im = ax.get_images()[0]
@@ -493,6 +494,7 @@ def gnomview(
             norm=norm,
             badcolor=badcolor,
             bgcolor=bgcolor,
+            polarization=polarization,
         )
         if cbar:
             im = ax.get_images()[0]
@@ -778,6 +780,7 @@ def cartview(
             bgcolor=bgcolor,
             norm=norm,
             aspect=aspect,
+            polarization=polarization,
         )
         if cbar:
             im = ax.get_images()[0]
@@ -1024,6 +1027,7 @@ def orthview(
             badcolor=badcolor,
             bgcolor=bgcolor,
             norm=norm,
+            polarization=polarization,
         )
         if cbar:
             im = ax.get_images()[0]
@@ -1284,6 +1288,7 @@ def azeqview(
             badcolor=badcolor,
             bgcolor=bgcolor,
             norm=norm,
+            polarization=polarization,
         )
         if cbar:
             im = ax.get_images()[0]
