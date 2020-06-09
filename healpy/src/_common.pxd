@@ -100,9 +100,9 @@ cdef extern from "healpix_base.h":
        void query_disc(pointing ptg, double radius, rangeset[I]& pixset) 
        void query_disc_inclusive(pointing ptg, double radius,
                                  rangeset[I]& pixset, int fact)
-       void query_polygon(vector[pointing] vert, rangeset[I]& pixset)
+       void query_polygon(vector[pointing] vert, rangeset[I]& pixset) except +
        void query_polygon_inclusive(vector[pointing] vert,
-                                    rangeset[I]& pixset, int fact)
+                                    rangeset[I]& pixset, int fact) except +
        void query_strip(double theta1, double theta2, bool inclusive,
                         rangeset[I]& pixset)
 
@@ -120,6 +120,11 @@ cdef extern from "alm.h":
         void Set (int lmax_, int mmax_)
         void Set (arr[T] &data, int lmax_, int mmax_)
         tsize Num_Alms (int l, int m)
+
+cdef extern from "rotmatrix.h":
+    cdef cppclass rotmatrix:
+        rotmatrix()
+        rotmatrix (double a00, double a01, double a02,double a10, double a11, double a12,double a20, double a21, double a22)
 
 cdef inline Healpix_Map[double]* ndarray2map(np.ndarray[np.float64_t, ndim=1, mode='c'] array, Healpix_Ordering_Scheme scheme) except *:
     """ View a contiguous ndarray as a Healpix Map. """

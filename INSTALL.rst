@@ -5,15 +5,24 @@ Requirements
 ------------
 
 Healpy depends on the HEALPix C++ and cfitsio C libraries. Source code for both
-is include with Healpy and is built automatically, so you do not need to
+is included with Healpy and is built automatically, so you do not need to
 install them yourself.
+Only Linux and MAC OS X are supported, not Windows.
 
-Quick installation with Pip
+Binary installation with conda (RECOMMENDED)
+-----------------------
+
+Conda forge provides a `conda
+channel <https://anaconda.org/conda-forge/healpy>`_ with a pre-compiled version of ``healpy``
+for linux 64bit and MAC OS X platforms, you can install it in Anaconda with::
+
+    conda config --add channels conda-forge
+    conda install healpy
+
+Source installation with Pip
 ---------------------------
 
-The quickest way to install Healpy is with `pip <http://www.pip-installer.org>`_
-(>= 1.4.2), which automatically fetches the latest version of Healpy and any
-missing dependencies::
+It is possible to build the latest ``healpy`` with `pip <http://www.pip-installer.org>`_ ::
 
     pip install --user healpy
 
@@ -22,7 +31,18 @@ by upgrading from time to time::
 
     pip install --user --upgrade healpy
 
-Even quicker installation on Mac OS with MacPorts
+On Linux with newer compilers many users reported compilation errors like ``configure: error: cannot run C compiled programs``,
+the solution is to specifiy the flags for the C and CXX compiler:
+
+    CC=gcc CXX=g++ CFLAGS='-fPIC' CXXFLAGS='-fPIC' pip install --user healpy
+
+Compilation issues with Mac OS
+------------------------------
+
+Currently most people report they cannot install `healpy` on Mac OS either via `pip` or building from source, due to the impossibility of compiling the `HEALPix` based extension.
+The only options right now are using `conda-forge` or `Macports`.
+
+Installation on Mac OS with MacPorts
 -------------------------------------------------
 
 If you are using a Mac and have the `MacPorts <https://www.macports.org>`_
@@ -30,7 +50,7 @@ package manager, it's even easer to install Healpy with::
 
     sudo port install py27-healpy
 
-Binary `apt-get` style packages are also available in the development versions of 
+Binary `apt-get` style packages are also available in the development versions of
 `Debian (sid) <https://packages.debian.org/sid/python-healpy>`_ and
 `Ubuntu (utopic) <http://packages.ubuntu.com/utopic/python-healpy>`_.
 
@@ -55,13 +75,13 @@ If everything goes fine, you can test it::
     python
 >>> import matplotlib.pyplot as plt
 >>> import numpy as np
->>> import healpy as hp 
+>>> import healpy as hp
 >>> hp.mollview(np.arange(12))
 >>> plt.show()
 
-or run the test suite with nose::
+or run the test suite with::
 
-    cd healpy-1.7.4 && python setup.py test
+    cd healpy-* && python setup.py test
 
 Building against external Healpix and cfitsio
 ---------------------------------------------
@@ -109,7 +129,11 @@ extensions in place with::
 
     python setup.py build_ext --inplace
 
-then add the ``healpy/healpy`` folder to your ``PYTHONPATH``.
+then add the ``healpy`` repository folder to your ``PYTHONPATH`` (e.g. if you
+cloned this repository to ``$REPOS`` such that ``$REPOS/healpy/INSTALL.rst``
+exists, then add ``$REPOS/healpy`` to your ``PYTHONPATH``).
+
+In case of compilation errors, see the note above in the ``pip`` section.
 
 Clean
 -----
