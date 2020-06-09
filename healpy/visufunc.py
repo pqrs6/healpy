@@ -98,6 +98,7 @@ def mollview(
     sub=None,
     nlocs=2,
     return_projected_map=False,
+    polarization=False,
 ):
     """Plot a healpix map (given as an array) in Mollweide projection.
     
@@ -341,6 +342,7 @@ def gnomview(
     notext=False,
     return_projected_map=False,
     no_plot=False,
+    polarization=False,
 ):
     """Plot a healpix map (given as an array) in Gnomonic projection.
 
@@ -614,6 +616,7 @@ def cartview(
     margins=None,
     notext=False,
     return_projected_map=False,
+    polarization=False,
 ):
     """Plot a healpix map (given as an array) in Cartesian projection.
 
@@ -868,6 +871,7 @@ def orthview(
     margins=None,
     sub=None,
     return_projected_map=False,
+    polarization=False,
 ):
     """Plot a healpix map (given as an array) in Orthographic projection.
     
@@ -1116,6 +1120,7 @@ def azeqview(
     margins=None,
     notext=False,
     return_projected_map=False,
+    polarization=False,
 ):
     """Plot a healpix map (given as an array) in Azimuthal equidistant projection
     or Lambert azimuthal equal-area projection.
